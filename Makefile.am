@@ -136,7 +136,18 @@ lib_orilib_a_SOURCES = \
   ORILIB_TraceReaderN_Init_i.c \
   ORILIB_TraceReaderN_ThrottleReinit_i.c \
   ORILIB_Wait_i.c
-#
+#  ORILIB_Interleaver48_i.c \
+#  ORILIB_PuncturerOneHalf_i.c \
+#  ORILIB_MapperBPSK_i.c \
+#  ORILIB_Interleaver48.c \
+#  WIFILIB_lookupTables.c \
+#  ORILIB_SoftDeinterleaver_algorithms.c \
+#  ORILIB_SoftBranchMetricsR1by2_algorithms.c \
+#  ORILIB_SoftDepuncturer_algos.c \
+#  ORILIB_Descrambler_algorithms.c \
+#  ORILIB_CRC32_algos.c \
+#  dsplib_twiddles/gen_twiddle_fft16x16.c \
+#  dsplib_twiddles/gen_twiddle_ifft16x16.c  \
 #  iqmath/IQmathTables.c
 #
 #the two dsplib_twiddles files are added in the build because dsplib 3_2_0_1 build
@@ -146,3 +157,4 @@ lib_orilib_a_SOURCES = \
 #
 
 dist_doc_DATA = README.md
+
