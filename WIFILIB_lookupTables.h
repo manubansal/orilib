@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#ifndef WIFILIB_LOOKUPTABLES_H_
 #define WIFILIB_LOOKUPTABLES_H_
 
 #include <osl/inc/or_types.h>

@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#ifndef ORILIB_BITCACHESKIPPUT_A8_C1024B_I_H_
 #define ORILIB_BITCACHESKIPPUT_A8_C1024B_I_H_
 
 void ORILIB_BitCacheSkipPut_a8_C1024b_i (

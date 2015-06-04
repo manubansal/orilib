@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_t.h"
+
 #include <oros/sysilib/SYS_TimeStamp.h>
 #include <ti/csl/csl_tsc.h>
 #include <stdio.h>

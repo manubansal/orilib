@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#ifndef ORILIB_VITERBIDECODERVCP_INITIDX_T_H
 #define ORILIB_VITERBIDECODERVCP_INITIDX_T_H 
 
 #include <osl/inc/swpform.h>

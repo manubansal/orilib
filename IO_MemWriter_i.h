@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#ifndef __IO_MEMWRITER_I_H__
 #define __IO_MEMWRITER_I_H__
 
 #include <osl/inc/swpform.h>

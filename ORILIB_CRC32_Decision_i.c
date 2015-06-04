@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#include <osl/inc/swpform.h>
 #include "ORILIB_CRC32_t.h"
 #ifndef DEVICE_K2K
 #include <ti/platform/evmc6670l/platform_lib/include/evmc66x_fpga.h>

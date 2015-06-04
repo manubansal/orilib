@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_ViterbiDecodingMap_t.h"
+
 void ORILIB_ViterbiDecodingMap_i (
 	    IN  WIFILIB_TxRxPktState * const restrict inpPktState,
 	    OUT Vitdec_ViterbiDecodingMap * const restrict vitdecMap,

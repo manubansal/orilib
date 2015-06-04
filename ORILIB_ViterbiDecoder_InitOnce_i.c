@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_ViterbiDecoder_InitOnce_t.h"
+
 void ORILIB_ViterbiDecoder_InitOnce_i (
 		OUT ORILIB_t_ViterbiDecoderState * const state,
 		CF  ORILIB_t_ViterbiDecoderInitOnceConf * conf

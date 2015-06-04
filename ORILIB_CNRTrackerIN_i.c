@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_CNRTrackerIN_t.h"
+
 
 static Uint32 compute_energy(
     IN 	Cplx16 const freshSampleBuf[restrict]

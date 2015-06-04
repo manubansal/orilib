@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include <osl/inc/swpform.h>
+
 void WIFILIB_fftShift64(
 	Cplx16 const * const restrict symbol_with_DC_at_idx_0,
 	Cplx16 * const restrict symbol_with_DC_in_middle

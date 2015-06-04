@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_t.h"
+
 void ORILIB_PreambleDetector_Init_i(
 	OUT ORILIB_t_CorrState   * corrState,
 	OUT ORILIB_t_PktAgcState * gainState 

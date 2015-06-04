@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#ifndef ORILIB_BYTECACHECAPPEDPUT_A8_C2048B432_T_H_
 #define ORILIB_BYTECACHECAPPEDPUT_A8_C2048B432_T_H_
 
 #include "ORILIB_t.h"

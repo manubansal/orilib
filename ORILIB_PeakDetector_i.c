@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_t.h"
+
 #if SYNC_BUFFER_SIZE_ENERGY != 80
 #error: Need SYNC_BUFFER_SIZE_ENERGY to be 80
 #endif

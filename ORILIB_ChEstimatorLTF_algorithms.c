@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+#include <osl/inc/swpform.h>
 #include <c6x.h>
 
 #include <src/DSP_recip16/c66/DSP_recip16.h>

@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_Descrambler_algorithms.h"
+
 void ORILIB_Scrambler_Init_i (
   OUT ORILIB_t_Descrambler_State * outState
   ) {

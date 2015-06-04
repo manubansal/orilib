@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include <osl/inc/swpform.h>
+
 #ifndef ORILIB_CHANNELIMPULSERESPONSE_K_H
 #define ORILIB_CHANNELIMPULSERESPONSE_K_H 
 

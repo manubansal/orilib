@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include <osl/inc/swpform.h>
+
 //#define PHY_SOFT_SLICER_UNNORM_UNIT_SCALE_UNBIASED			6		//Q6  this is because the biggest normalized TODO HACK
 ///#define N_ADDITIONAL_INT_BITS						(8 - PHY_SOFT_SLICER_UNNORM_UNIT_SCALE - 1 - 1)
 //#define PHY_SOFT_SLICER_SCALE_BIAS_DUE_TO_PAPR_AGC_MARGIN   		2		//this must match SYNC_AGC_GAIN_SAFETY_MARGIN_FOR_HIGH_PAPR

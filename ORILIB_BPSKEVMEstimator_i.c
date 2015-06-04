@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_BPSKEVMEstimator_t.h"
+
 #define PLUS_ONE	96
 
 void ORILIB_BPSKEVMEstimator_i (

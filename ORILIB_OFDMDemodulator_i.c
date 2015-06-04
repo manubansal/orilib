@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include <osl/inc/swpform.h>
+
 #include <src/DSP_fft16x16/c66/DSP_fft16x16.h>
 
 #include "ORILIB_OFDMDemodulator_t.h"

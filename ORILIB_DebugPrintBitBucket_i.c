@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include "ORILIB_DebugPrintBitBucket_t.h"
+
 void ORILIB_DebugPrintBitBucket_i (
 	    IN  void const * const restrict inpBitBucket,
 	    CF  ORILIB_DebugPrintBitBucketConf * conf

@@ -5,6 +5,8 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
+#include <osl/inc/swpform.h>
+
 #include "ORILIB_t.h"
 #include "WIFILIB_t.h"
 #include "ORILIB_ConvolutionalEncoder24_t.h"

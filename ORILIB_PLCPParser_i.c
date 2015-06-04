@@ -4,6 +4,8 @@ Copyright (c) 2015 Stanford University
 Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
+
+//IN BitsPacked_ll const * const restrict plcp_bits_in,
 //INOUT WifiPlcpParserState * const restrict outPlcpState
 //){
 
