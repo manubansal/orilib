@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#CC="_cl6x" 
+#AR="ar6x"
+
+build="i686-pc-linux-gnu"
+
+#for some reason, this setting is not being picked up, so put in 
+#on the command line as ../configure --host="c6600"
+#host="c6600" 
+
+#do no work
+#CFLAGS="-I\"${CG_TOOL_ROOT}/include\""
+#CFLAGS="-I${CG_TOOL_ROOT}/include"
+#CFLAGS="-I${CG_TOOL_ROOT_}/include"
+
+#works
+#CFLAGS="-I\"${CG_TOOL_ROOT_WIN}/include\" -I\"${CG_TOOL_ROOT_WIN}/lib\""
+#LDFLAGS="-llibc.a"
+
+#does not work because these options have not been handled in cl6x_
+#CFLAGS="-I\"${CG_TOOL_ROOT_WIN}/include\" -I\"${CG_TOOL_ROOT_WIN}/lib\" \
+#	-mv6600 -g --relaxed_ansi --diag_warning=225 --gen_func_subsections=on --big_endian --abi=eabi"
+#LDFLAGS="-llibc.a \
+#	--stack_size=0x4000 --heap_size=0x4000 --define=ALLCORE --warn_sections \
+#	--reread_libs --rom_model --unused_section_elimination=on"
+
+
+#echo $CFLAGS
+
+#new version
+#CFLAGS="--CFLAGS_CMD_FILE cmd_cflags.cmd"
+#LDFLAGS="--LDFLAGS_CMD_FILE cmd_ldflags.cmd"
+
+#works
+#CFLAGS="-I\"${CG_TOOL_ROOT_WIN}/include\" -I\"${CG_TOOL_ROOT_WIN}/lib\""
+#LDFLAGS="--LDFLAGS_CMD_FILE `cygpath -m ../cmd_ldflags.cmd`"
+
+#CFLAGS="--ALLFLAGS_CMD_FILE `cygpath -m ../allflags.cmd`"
+#CFLAGS="--ALLFLAGS_CMD_FILE \"`cygpath -m ../allflags.cmd`\""
+#ARFLAGS="r"
+
+######CFLAGS=" -I\"${CG_TOOL_ROOT_WIN}/include\" -I\"${CG_TOOL_ROOT_WIN}/lib\" --ALLFLAGS_CMD_FILE \"`cygpath -m ../confflags.cmd`\" "
+CFLAGS=" -I\"${CG_TOOL_ROOT_WIN}/include\" -I\"${CG_TOOL_ROOT_WIN}/lib\""
+
