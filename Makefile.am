@@ -9,6 +9,7 @@ lib_orilib_a_SOURCES = \
   WIFILIB_util.c \
   ORILIB_printDebug.c \
   ORILIB_GPIO_i.c \
+  ORILIB_GPIO_input_i.c \
   ORILIB_Scrambler_Init_i.c \
   ORILIB_Scrambler24_i.c \
   ORILIB_TailZeroer24_i.c \
