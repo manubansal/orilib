@@ -20,6 +20,9 @@ lib_orilib_a_SOURCES = \
   ORILIB_ByteReader_Init_i.c \
   ORILIB_EthInterfaceInit_i.c \
   ORILIB_EthReaderTimedBlocking_i.c \
+  ORILIB_EthReaderBuffered_i.c \
+  ORILIB_EthReaderBuffered_example_pkt_filter.c \
+  ORILIB_EthReaderBuffered_Init_i.c \
   ORILIB_EthReaderSimple_i.c \
   ORILIB_EthReader_i.c \
   ORILIB_EthReader_Init_i.c \
