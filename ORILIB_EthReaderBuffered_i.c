@@ -68,22 +68,23 @@ static void savePkt(
   buf = state->pktBuf[qid][idx];
   nwr = state->nWritten[qid];
 
-  //DEBUG_ERROR(
   if (nwr == N_BUFS) {
-    printf("queue %d full, overwriting pkt\n", qid);
+    //DEBUG_ERROR(
+    printf("queue %d full, dropping pkt...\n", qid);
+    //)
   }
-  //)
+  else {
+    ndw = ceil(pkt_len, 64);
+  //#define ASSERT_PTR_ALIGNED(ptr, factor) assert(!((Uint32)ptr % factor))
+  //  ASSERT_PTR_ALIGNED(pkt, 4);
+  //  ASSERT_PTR_ALIGNED(buf, 4);
+  //#undef ASSERT_PTR_ALIGNED
+    _mem4cpy(buf, pkt, ndw * 2);
+    nwr = nwr < N_BUFS ? nwr + 1 : N_BUFS;
 
-  ndw = ceil(pkt_len, 64);
-#define ASSERT_PTR_ALIGNED(ptr, factor) assert(!((Uint32)ptr % factor))
-  ASSERT_PTR_ALIGNED(pkt, 4);
-  ASSERT_PTR_ALIGNED(buf, 4);
-#undef ASSERT_PTR_ALIGNED
-  _mem4cpy(buf, pkt, ndw * 2);
-  nwr = nwr < N_BUFS ? nwr + 1 : N_BUFS;
-
-  state->lastWritten[qid] = idx;
-  state->nWritten[qid] = nwr;
+    state->lastWritten[qid] = idx;
+    state->nWritten[qid] = nwr;
+  }
 }
 
       //OUT void * pkt,
