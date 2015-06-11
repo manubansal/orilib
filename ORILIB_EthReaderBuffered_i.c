@@ -29,6 +29,9 @@ Author(s): Manu Bansal
 static uint8_t prev_seq = 0;
 static Uint32 missing = 0;
 
+#pragma DATA_ALIGN(aligned4PktBuf, 4);
+static char aligned4PktBuf[1536];
+
 
 static void savePkt(
 		void * pkt, 
@@ -41,6 +44,9 @@ static void savePkt(
   Uint32 nwr;
   Uint32 ndw;
   Int32 qid;
+
+  memcpy(aligned4PktBuf, pkt, 1536);
+  pkt = aligned4PktBuf;
 
   Int32 (*filter)(void *, Uint32);
   filter = conf->filter;
@@ -69,6 +75,10 @@ static void savePkt(
   //)
 
   ndw = ceil(pkt_len, 64);
+#define ASSERT_PTR_ALIGNED(ptr, factor) assert(!((Uint32)ptr % factor))
+  ASSERT_PTR_ALIGNED(pkt, 4);
+  ASSERT_PTR_ALIGNED(buf, 4);
+#undef ASSERT_PTR_ALIGNED
   _mem4cpy(buf, pkt, ndw * 2);
   nwr = nwr < N_BUFS ? nwr + 1 : N_BUFS;
 
@@ -110,14 +120,14 @@ void ORILIB_EthReaderBuffered_i (
 
 	  //eth_printMAC(mac);
 	  //DEBUG_ERROR(
-	  printf("NODE_ID: %3d EthReaderBuffered: rxPktLen: %d, ", NODE_ID, rx_packet_len);
-	  printf(" dst:");
-	  eth_printMAC(ip_pkt->hw_header.dst_eth);
-	  printf(" src:");
-	  eth_printMAC(ip_pkt->hw_header.src_eth);
-	  printf(" udpDstPort: 0x%04x ", udphdr->dest);
-	  eth_printUDPPayloadChars(ip_pkt, 4);
-	  printf("\n");
+	  //printf("NODE_ID: %3d EthReaderBuffered: rxPktLen: %d, ", NODE_ID, rx_packet_len);
+	  //printf(" dst:");
+	  //eth_printMAC(ip_pkt->hw_header.dst_eth);
+	  //printf(" src:");
+	  //eth_printMAC(ip_pkt->hw_header.src_eth);
+	  //printf(" udpDstPort: 0x%04x ", udphdr->dest);
+	  //eth_printUDPPayloadChars(ip_pkt, 4);
+	  //printf("\n");
 	  //)
 
 	}
@@ -132,7 +142,7 @@ void ORILIB_EthReaderBuffered_i (
 
 		
 	//DEBUG_ERROR(
-	printf("eth reader: timeout = %d, %llu, %llu, %llu\n", timeout, entr_tsc, exit_tsc, CSL_tscRead());
+	//printf("eth reader: timeout = %d, %llu, %llu, %llu\n", timeout, entr_tsc, exit_tsc, CSL_tscRead());
 	//printf("* NODE_ID: %3d EthReaderBuffered: rxPktLen: %d, ", NODE_ID, rx_packet_len);
 	//printf(" dst:");
 	//eth_printMAC(ip_pkt->hw_header.dst_eth);
