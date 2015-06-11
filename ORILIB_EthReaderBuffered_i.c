@@ -51,6 +51,13 @@ static void savePkt(
   //printf("qid: %d\n", qid);
   //)
 
+  if (qid < 0 || qid >= N_QUEUES) {
+    DEBUG_ERROR(
+      printf("bad queue id, dropping pkt...\n");
+    )
+    return;
+  }
+
   idx = (state->lastWritten[qid] + 1) % N_BUFS;
   buf = state->pktBuf[qid][idx];
   nwr = state->nWritten[qid];
