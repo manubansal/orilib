@@ -74,7 +74,7 @@ static void savePkt(
     //)
   }
   else {
-    ndw = ceil(pkt_len, 64);
+    ndw = ceil(pkt_len, 8);
   //#define ASSERT_PTR_ALIGNED(ptr, factor) assert(!((Uint32)ptr % factor))
   //  ASSERT_PTR_ALIGNED(pkt, 4);
   //  ASSERT_PTR_ALIGNED(buf, 4);
