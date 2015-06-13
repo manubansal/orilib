@@ -5,7 +5,7 @@ Released under the Apache License v2.0. See the LICENSE file for details.
 Author(s): Manu Bansal
 */
 
-#include "ORILIB_GPIO_t.h"
+#include "ORILIB_GPIO_input_t.h"
 #include <osl/inc/swpform.h>
 #include <ti/csl/csl_gpioAux.h>
 
@@ -15,14 +15,14 @@ void ORILIB_GPIO_input_i (
 
 	//Uint32 pinNum = 10;
 	Uint32 pinNum = conf->pin;
-	Uint8 gpioData;
+	volatile Uint8 gpioData;
 	volatile Uint8 entryState = 0;
 
 	CSL_GpioHandle hGpio;
 
 	//hGpio = CSL_GPIO_open (0);
 	hGpio = CSL_GPIO_open(conf->bank);
-	CSL_GPIO_setPinDirOutput(hGpio, pinNum);
+	CSL_GPIO_setPinDirInput(hGpio, pinNum);
 
 	CSL_GPIO_getInputData (hGpio, pinNum, &gpioData);
 	entryState = gpioData;

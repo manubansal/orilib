@@ -8,4 +8,6 @@ Author(s): Manu Bansal
 #ifndef ORILIB_GPIO_INPUT_T_H
 #define ORILIB_GPIO_INPUT_T_H 
 
+#include "ORILIB_GPIO_t.h"
+
 #endif /* ORILIB_GPIO_INPUT_T_H */

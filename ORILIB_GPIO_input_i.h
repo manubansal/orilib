@@ -8,7 +8,7 @@ Author(s): Manu Bansal
 #ifndef ORILIB_GPIO_INPUT_I_H
 #define ORILIB_GPIO_INPUT_I_H 
 
-#include "ORILIB_GPIO_t.h"
+#include "ORILIB_GPIO_input_t.h"
 #include <osl/inc/swpform.h>
 #include <ti/csl/csl_gpioAux.h>
 

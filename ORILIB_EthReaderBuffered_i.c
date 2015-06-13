@@ -139,7 +139,7 @@ void ORILIB_EthReaderBuffered_i (
 		timeout = 0;
 	}
 
-	printf("ORILIB_EthReaderBuffered: nPktsRx = %d\n", nPktsRx);
+	//printf("ORILIB_EthReaderBuffered: nPktsRx = %d\n", nPktsRx);
 
 		
 	//DEBUG_ERROR(

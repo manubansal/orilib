@@ -9,7 +9,6 @@ Author(s): Manu Bansal
 #define ORILIB_GPIO_T_H_
 
 #include <osl/inc/swpform.h>
-#include "ORILIB_GPIO_t.h"
 
 typedef struct {
 	Uint8 bank;
