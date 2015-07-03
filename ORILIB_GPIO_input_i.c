@@ -44,7 +44,7 @@ void ORILIB_GPIO_input_i (
 	    break;
 	}
 
-	printf("entryState:%d,exitState:%d\n",entryState,gpioData);
+	//printf("entryState:%d,exitState:%d\n",entryState,gpioData);
 }
 
 void ORILIB_GPIO_input_i_conf (
