@@ -162,3 +162,7 @@ lib_orilib_a_SOURCES = \
 
 dist_doc_DATA = README.md
 
+clean:
+	rm $(top_srcdir)/*.pp
+	rm -rf $(top_srcdir)/dsp_twiddles
+	rm -rf $(top_srcdir)/iqmath
