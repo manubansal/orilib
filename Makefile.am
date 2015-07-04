@@ -150,9 +150,9 @@ lib_orilib_a_SOURCES = \
   ORILIB_SoftDepuncturer_algos.c \
   ORILIB_Descrambler_algorithms.c \
   ORILIB_CRC32_algos.c \
-  from_tiextlibs/dsplib_twiddles/gen_twiddle_fft16x16.c \
-  from_tiextlibs/dsplib_twiddles/gen_twiddle_ifft16x16.c  \
-  from_tiextlibs/iqmath/IQmathTables.c
+  dsplib_twiddles/gen_twiddle_fft16x16.c \
+  dsplib_twiddles/gen_twiddle_ifft16x16.c  \
+  iqmath/IQmathTables.c
 #
 #the two dsplib_twiddles files are added in the build because dsplib 3_2_0_1 build
 #does not include those objects. 
