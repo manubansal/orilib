@@ -33,7 +33,7 @@ static Uint32 missing = 0;
 static char aligned4PktBuf[1536];
 
 
-static void savePkt(
+static Uint32 savePkt(
 		void * pkt, 
 		Uint32 pkt_len, 
 		ORILIB_t_EthReaderBuffer * state, 
@@ -44,13 +44,16 @@ static void savePkt(
   Uint32 nwr;
   Uint32 ndw;
   Int32 qid;
+  Uint32 blocked = 1;
 
   memcpy(aligned4PktBuf, pkt, 1536);
   pkt = aligned4PktBuf;
 
-  Int32 (*filter)(void *, Uint32);
+  //Int32 (*filter)(void *, Uint32);
+  void (*filter)(void *, Uint32, Int32 * qid, Uint32 *);
   filter = conf->filter;
-  qid = (*filter)(pkt, pkt_len);
+  //qid = (*filter)(pkt, pkt_len);
+  (*filter)(pkt, pkt_len, &qid, &blocked);
 
   //DEBUG_INFO(
   //printf("savePkt\n");
@@ -85,6 +88,14 @@ static void savePkt(
     state->lastWritten[qid] = idx;
     state->nWritten[qid] = nwr;
   }
+
+  if (conf->block_on_queue < 0) {
+    blocked = 0;
+  }
+  else {
+    blocked = (state->nWritten[conf->block_on_queue] == 0);
+  }
+  return blocked;
 }
 
       //OUT void * pkt,
@@ -95,6 +106,7 @@ void ORILIB_EthReaderBuffered_i (
 
 	Uint8* rx_packet = NULL;
 	Uint32 rx_packet_len = 0;
+	Uint32 blocked = 1;
 
 	NET_ip_packet * ip_pkt = NULL;
 	NET_udphdr * udphdr = NULL;
@@ -104,17 +116,23 @@ void ORILIB_EthReaderBuffered_i (
 
 	volatile Uint64 entr_tsc = CSL_tscRead();
 	volatile Uint64 exit_tsc = entr_tsc + conf->timeout;
+	volatile Uint64 curr_tsc;
 
+	curr_tsc = CSL_tscRead();
 
 	// wait until timeout
-	while (CSL_tscRead() < exit_tsc) {
+	while (blocked || (curr_tsc < exit_tsc)) {
 
 	  ret = eth_recv(&rx_packet, &rx_packet_len, 0);
+	  curr_tsc = CSL_tscRead();
 	  if (ret < 0)
 	    continue;
 
 	  nPktsRx++;
-	  savePkt(rx_packet, rx_packet_len, state, conf);
+	  if (nPktsRx > 100) {
+		  SW_BREAKPOINT;
+	  }
+	  blocked &= savePkt(rx_packet, rx_packet_len, state, conf);
 
 	  ip_pkt = (NET_ip_packet *)(rx_packet);
 	  udphdr = (NET_udphdr *)(ip_pkt->data);		//assuming no variable-length options in IP hdr
@@ -130,6 +148,7 @@ void ORILIB_EthReaderBuffered_i (
 	  //eth_printUDPPayloadChars(ip_pkt, 4);
 	  //printf("\n");
 	  //)
+
 
 	}
 
@@ -157,11 +176,16 @@ void ORILIB_EthReaderBuffered_i (
 
 }
 
+//	Int32 (*filter)(void *, Uint32)
+//block_on_queue < 0: don't block on any queue
+//block_on_queue >= 0: block until qid = block_on_queue has at least one pkt
 void ORILIB_EthReaderBuffered_i_conf(
 	CF  ORILIB_EthReaderBuffered_t_Conf * conf,
 	Uint64 timeout,
-	Int32 (*filter)(void *, Uint32)
+	void (*filter)(void *, Uint32, Int32 *, Uint32 *),
+	Int32 block_on_queue
 	){
   conf->timeout = timeout;
   conf->filter = filter;
+  conf->block_on_queue = block_on_queue;
 }

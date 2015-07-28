@@ -16,10 +16,12 @@ void ORILIB_EthReaderBuffered_i (
       CF  ORILIB_EthReaderBuffered_t_Conf * conf
       );
 
+	//Int32 (*filter)(void *, Uint32)
 void ORILIB_EthReaderBuffered_i_conf(
 	CF  ORILIB_EthReaderBuffered_t_Conf * conf,
 	Uint64 timeout,
-	Int32 (*filter)(void *, Uint32)
+	void (*filter)(void *, Uint32, Int32 *, Uint32 *),
+	Int32 block_on_queue
 	);
 
 #endif /* ORILIB_ETHREADERBUFFERED_I_H */

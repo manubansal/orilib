@@ -12,11 +12,12 @@ Author(s): Manu Bansal
 
 typedef struct {
   Uint64 timeout;
-  Int32 (*filter)(void *, Uint32);
+  void (*filter)(void *, Uint32, Int32 *, Uint32 *);
+  Int32 block_on_queue;
 } ORILIB_EthReaderBuffered_t_Conf;
 
 #define N_QUEUES		5
-#define N_BUFS			4
+#define N_BUFS			20
 //#define MSS			1500
 #define MSS			1536	//nearest multiple of 64, so that 
 					//our memory allocations for MSS-sized
