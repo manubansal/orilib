@@ -62,6 +62,12 @@ void ORILIB_PLCPParser_i (
 	//data_length = 1600;
 	//!!!!!!!!!!!!!!!!!!!!!!
 
+#ifdef PLCPSTATICPKTLEN
+#if PLCPSTATICPKTLEN > 0
+	data_length = PLCPSTATICPKTLEN;
+#endif
+#endif
+
 
 	DEBUG_INFO(
 	LOG_PRINTF("datarate_plcp: %2d, datarate_idx : %2d, data length (bytes) : %4d\n", 

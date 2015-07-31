@@ -6,6 +6,8 @@ AC_INIT([orilib], [3.8], [manub@stanford.edu])
 #	;;
 #esac
 
+#AS_HELP_STRING([inptracemode=<lc|lm|s>], [lc for large-compiled, lm for large-manually-loaded, s for small])
+
 AS_CASE([$inptracemode],
 	[lc], [INPTRACEMODEVAL=lc],
 	[large-compiled], [INPTRACEMODEVAL=lc],
@@ -17,6 +19,7 @@ AS_CASE([$inptracemode],
 #	AC_MSG_ERROR([Unknown inptracemode flag value inptracemode=$inptracemode])
 	)
 AC_SUBST([INPTRACEMODEVAL])
+AC_ARG_VAR(inptracemode, [lc for large-compiled, lm for large-manually-loaded, s for small])
 
 AM_CONDITIONAL([INPTRACE_S], [test x$INPTRACEMODEVAL = xs])
 AM_CONDITIONAL([INPTRACE_LC], [test x$INPTRACEMODEVAL = xlc])
@@ -36,6 +39,14 @@ AS_CASE([$snrber],
 #	AC_MSG_ERROR([Unknown snrber flag value snrber=$snrber])
 	)
 AC_SUBST([SNRBERDEFINED])
+
+AC_ARG_VAR(plcpstaticpktlen, [set pkt length in plcp statically to the specified value])
+AS_IF([test "x$plcpstaticpktlen" == "x"],
+	[PLCPSTATICPKTLEN=0],
+	[PLCPSTATICPKTLEN=$plcpstaticpktlen],
+	)
+
+AC_SUBST([PLCPSTATICPKTLEN])
 
 AS_CASE([$debug],
 	[4], [DEBUGLEVEL=4],
@@ -94,6 +105,9 @@ AS_CASE([$host],
 #       AC_MSG_ERROR([Unknown host platform --host=$host])
      )
 AC_SUBST([HOST])
+
+#AS_CASE([$pktlen],
+#	[
 
 AM_CONDITIONAL([DEVICE_IS_6638K2K], [test x$HOST = x6638k2k])
 #AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
