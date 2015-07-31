@@ -64,19 +64,19 @@ static Uint32 savePkt(
     DEBUG_ERROR(
       printf("bad queue id, dropping pkt...\n");
     )
-    return;
+    return blocked;
   }
 
   idx = (state->lastWritten[qid] + 1) % ORILIB_ETHREADERBUFFERED_N_BUFS;
   buf = state->pktBuf[qid][idx];
   nwr = state->nWritten[qid];
 
-  if (qid == 0) {
-	  memcpy(&curr_seq, pkt + 42, 4);
-	  printf("%d\n", curr_seq);
-	  missing = (curr_seq != (prev_seq + 1));
-	  prev_seq = curr_seq;
-  }
+//  if (qid == 0) {
+//	  memcpy(&curr_seq, pkt + 42, 4);
+//	  printf("%d\n", curr_seq);
+//	  missing = (curr_seq != (prev_seq + 1));
+//	  prev_seq = curr_seq;
+//  }
 
   if (nwr == ORILIB_ETHREADERBUFFERED_N_BUFS) {
     //DEBUG_ERROR(
