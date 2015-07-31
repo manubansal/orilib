@@ -11,12 +11,12 @@ void ORILIB_EthReaderBuffered_Init_i (
       OUT  ORILIB_t_EthReaderBuffer * state
       ) {
       
-  //char pktBuf[N_QUEUES][N_BUFS][MSS]; 
-  //Uint32 lastWritten[N_QUEUES];
-  //Uint32 nWritten[N_QUEUES];
+  //char pktBuf[ORILIB_ETHREADERBUFFERED_N_QUEUES][N_BUFS][MSS]; 
+  //Uint32 lastWritten[ORILIB_ETHREADERBUFFERED_N_QUEUES];
+  //Uint32 nWritten[ORILIB_ETHREADERBUFFERED_N_QUEUES];
 
       Uint32 i;
-      for (i = 0; i < N_QUEUES; i++) {
+      for (i = 0; i < ORILIB_ETHREADERBUFFERED_N_QUEUES; i++) {
         state->lastWritten[i] = 0;
 	state->nWritten[i] = 0;
       }

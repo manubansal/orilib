@@ -26,7 +26,7 @@ Author(s): Manu Bansal
 //#define ETH_SRC_IDX 6
 //#define UDP_SRC_IDX 34
 
-static uint8_t prev_seq = 0;
+static Uint32 prev_seq = 0, curr_seq = 0;
 static Uint32 missing = 0;
 
 #pragma DATA_ALIGN(aligned4PktBuf, 4);
@@ -60,18 +60,25 @@ static Uint32 savePkt(
   //printf("qid: %d\n", qid);
   //)
 
-  if (qid < 0 || qid >= N_QUEUES) {
+  if (qid < 0 || qid >= ORILIB_ETHREADERBUFFERED_N_QUEUES) {
     DEBUG_ERROR(
       printf("bad queue id, dropping pkt...\n");
     )
     return;
   }
 
-  idx = (state->lastWritten[qid] + 1) % N_BUFS;
+  idx = (state->lastWritten[qid] + 1) % ORILIB_ETHREADERBUFFERED_N_BUFS;
   buf = state->pktBuf[qid][idx];
   nwr = state->nWritten[qid];
 
-  if (nwr == N_BUFS) {
+  if (qid == 0) {
+	  memcpy(&curr_seq, pkt + 42, 4);
+	  printf("%d\n", curr_seq);
+	  missing = (curr_seq != (prev_seq + 1));
+	  prev_seq = curr_seq;
+  }
+
+  if (nwr == ORILIB_ETHREADERBUFFERED_N_BUFS) {
     //DEBUG_ERROR(
     printf("queue %d full, dropping pkt...\n", qid);
     //)
@@ -83,7 +90,7 @@ static Uint32 savePkt(
   //  ASSERT_PTR_ALIGNED(buf, 4);
   //#undef ASSERT_PTR_ALIGNED
     _mem4cpy(buf, pkt, ndw * 2);
-    nwr = nwr < N_BUFS ? nwr + 1 : N_BUFS;
+    nwr = nwr < ORILIB_ETHREADERBUFFERED_N_BUFS ? nwr + 1 : ORILIB_ETHREADERBUFFERED_N_BUFS;
 
     state->lastWritten[qid] = idx;
     state->nWritten[qid] = nwr;
