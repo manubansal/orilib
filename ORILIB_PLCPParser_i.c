@@ -64,17 +64,19 @@ void ORILIB_PLCPParser_i (
 
 #ifdef PLCPSTATICPKTLEN
 #if PLCPSTATICPKTLEN > 0
+	plcp_result->packet_length_as_originally_received = data_length;
 	data_length = PLCPSTATICPKTLEN;
+	plcp_result->packet_length_12bits = data_length;
 #endif
 #endif
 
 
-	DEBUG_INFO(
+	//DEBUG_INFO(
 	LOG_PRINTF("datarate_plcp: %2d, datarate_idx : %2d, data length (bytes) : %4d\n", 
 	  plcp_result->data_rate_4bits,
 	  data_rate,
 	  data_length);
-	)
+	//)
 
 
 	WIFILIB_setPktState(

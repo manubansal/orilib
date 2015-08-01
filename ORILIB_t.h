@@ -141,6 +141,11 @@ typedef struct {
   Uint32 data_rate_4bits; 
   Uint32 packet_length_12bits;
   Uint32 nOfdmSymsInPkt;
+#ifdef PLCPSTATICPKTLEN
+#if PLCPSTATICPKTLEN > 0
+  Uint32 packet_length_as_originally_received;
+#endif
+#endif
 } ORILIB_t_PLCPParserState;
 
 //--------
