@@ -16,6 +16,7 @@ Author(s): Manu Bansal
 #include <ti/csl/csl_tsc.h>
 
 #include <oros/sysilib/SYS_TimeStamp.h>
+#include "ORILIB_util.h"
 
 //#define ETH_HDR_LEN 14
 //#define IP_HDR_LEN 20
@@ -78,9 +79,22 @@ static Uint32 savePkt(
 //	  prev_seq = curr_seq;
 //  }
 
+  if (nwr > (ORILIB_ETHREADERBUFFERED_N_BUFS >> 1 )) {
+    //DEBUG_ERROR(
+    //printf("queue %d full, dropping pkt...\n", qid);
+    //printf("WARNING: queue %d more than half full...\n", qid);
+    ORILIB_gpio_output_control(0, 5, 1);
+    //)
+  }
+  else {
+    ORILIB_gpio_output_control(0, 5, 0);
+  }
+
+
   if (nwr == ORILIB_ETHREADERBUFFERED_N_BUFS) {
     //DEBUG_ERROR(
-    printf("queue %d full, dropping pkt...\n", qid);
+    //printf("queue %d full, dropping pkt...\n", qid);
+    ORILIB_gpio_output_control(0, 6, 2);
     //)
   }
   else {
@@ -127,8 +141,24 @@ void ORILIB_EthReaderBuffered_i (
 
 	curr_tsc = CSL_tscRead();
 
+
+	if (conf->block_on_queue < 0) {
+	  blocked = 0;
+	}
+	else {
+	  blocked = (state->nWritten[conf->block_on_queue] == 0);
+	}
+
+
 	// wait until timeout
 	while (blocked || (curr_tsc < exit_tsc)) {
+
+	  if (blocked) {
+	    ORILIB_gpio_output_control(0, 7, 1);
+	  }
+	  else {
+	    ORILIB_gpio_output_control(0, 7, 0);
+	  }
 
 	  ret = eth_recv(&rx_packet, &rx_packet_len, 0);
 	  curr_tsc = CSL_tscRead();
@@ -157,6 +187,13 @@ void ORILIB_EthReaderBuffered_i (
 	  //)
 
 
+	}
+
+	if (blocked) {
+	  ORILIB_gpio_output_control(0, 7, 1);
+	}
+	else {
+	  ORILIB_gpio_output_control(0, 7, 0);
 	}
 
 	Uint32 timeout = 1;
