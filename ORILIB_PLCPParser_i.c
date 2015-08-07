@@ -71,12 +71,12 @@ void ORILIB_PLCPParser_i (
 #endif
 
 
-	//DEBUG_INFO(
+	DEBUG_INFO(
 	LOG_PRINTF("datarate_plcp: %2d, datarate_idx : %2d, data length (bytes) : %4d\n", 
 	  plcp_result->data_rate_4bits,
 	  data_rate,
 	  data_length);
-	//)
+	)
 
 
 	WIFILIB_setPktState(
