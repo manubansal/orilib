@@ -62,7 +62,7 @@ static Uint32 savePkt(
   //)
 
   if (qid < 0 || qid >= ORILIB_ETHREADERBUFFERED_N_QUEUES) {
-    DEBUG_ERROR(
+    DEBUG_DATA(
       printf("bad queue id, dropping pkt...\n");
     )
     return blocked;
@@ -167,7 +167,7 @@ void ORILIB_EthReaderBuffered_i (
 
 	  nPktsRx++;
 	  if (nPktsRx > 100) {
-		  SW_BREAKPOINT;
+		  //SW_BREAKPOINT;
 	  }
 	  blocked &= savePkt(rx_packet, rx_packet_len, state, conf);
 
