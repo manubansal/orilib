@@ -7,8 +7,9 @@ Author(s): Manu Bansal
 
 #include <osl/inc/swpform.h>
 #include <osl/inc/eth/eth.h>
-
+#include "ORILIB_util.h"
 #include "ORILIB_EthInterfaceInit_t.h"
+#include <ti/platform/platform.h>
 
 void ORILIB_EthInterfaceInit_i(
 		CF ORILIB_t_EthInterfaceConf * conf
@@ -18,8 +19,19 @@ void ORILIB_EthInterfaceInit_i(
 	uint8_t amc_mac[6]  = {0x00, 0x01, 0x01, 0x01, 0x01, 0x02};
 	uint8_t wire_mac[6] = {0x00, 0x01, 0x01, 0x01, 0x01, 0x03};
 
+	platform_info p_I;
+	platform_get_info(&p_I);
+	printf("registering host mac address %02x:%02x:%02x:%02x:%02x:%02x\n",
+	      p_I.emac.efuse_mac_address[0],
+	      p_I.emac.efuse_mac_address[1],
+	      p_I.emac.efuse_mac_address[2],
+	      p_I.emac.efuse_mac_address[3],
+	      p_I.emac.efuse_mac_address[4],
+	      p_I.emac.efuse_mac_address[5]);
 
-	host_mac[4] = conf->nodeId;
+
+	//host_mac[4] = conf->nodeId;
+	memcpy(host_mac, p_I.emac.efuse_mac_address, 6);
 	amc_mac[4] = conf->nodeId;
 	wire_mac[4] = conf->nodeId;
 

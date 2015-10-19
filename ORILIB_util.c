@@ -7,6 +7,7 @@ Author(s): Manu Bansal
 
 #include <osl/inc/swpform.h>
 #include <ti/csl/csl_gpioAux.h>
+#include <ti/platform/platform.h>
 
 void ORILIB_gpio_output_control(
 	Uint8 bank,
@@ -40,3 +41,8 @@ void ORILIB_gpio_output_control(
 		break;
 	}
 }
+
+//void ORILIB_init_platform_info(platform_info * p_I) {
+//  //fill in the platform info into the given buffer
+//  platform_get_info(p_I);
+//}
