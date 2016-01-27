@@ -2,6 +2,7 @@
 #include <osl/inc/eth/eth.h>
 #include "ORILIB_util.h"
 #include "ORILIB_EthInterfaceAddMACAddr_t.h"
+#include <osl/eth/cpsw_singlecore.h>
 
 void ORILIB_EthInterfaceAddMACAddr_i (
 		CF ORILIB_t_EthInterfaceAddMACAddr * conf
