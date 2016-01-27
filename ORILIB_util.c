@@ -9,6 +9,17 @@ Author(s): Manu Bansal
 #include <ti/csl/csl_gpioAux.h>
 #include <ti/platform/platform.h>
 
+void printMacAddr(void * addr) {
+  int i = 0;
+  unsigned char * p = (unsigned char *)addr;
+  for (i = 0; i < 5; i++) {
+    printf("%02x:", p[i]);
+  }
+  printf("%02x", p[i]);
+}
+
+
+
 void ORILIB_gpio_output_control(
 	Uint8 bank,
 	Uint8 pin,

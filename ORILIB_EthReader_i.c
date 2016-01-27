@@ -61,21 +61,22 @@ void ORILIB_EthReader_i (
 	// VITA
 	if (conf->vitaOrDebug)
 	{
-		while (rx_packet == NULL ||
-			vita49if_data_parse(&v49_data, rx_packet + TOTAL_HDR_LEN, rx_packet_len - TOTAL_HDR_LEN) < 0 ||
-			v49_data.payload.len != conf->nSamplesPerSymbol*4)
+		while (rx_packet == NULL)
+//		while (rx_packet == NULL ||
+//			vita49if_data_parse(&v49_data, rx_packet + TOTAL_HDR_LEN, rx_packet_len - TOTAL_HDR_LEN) < 0 ||
+//			v49_data.payload.len != conf->nSamplesPerSymbol*4)
 		{
 			eth_recv(&rx_packet, &rx_packet_len, 1);
 		}
 	
-		if (v49_data.hdr.packet_count != ((prev_seq + 1) & 0xF))
-			missing++;
+//		if (v49_data.hdr.packet_count != ((prev_seq + 1) & 0xF))
+//			missing++;
 
-		prev_seq = v49_data.hdr.packet_count;
+//		prev_seq = v49_data.hdr.packet_count;
 
 		memcpy(outStateBuf->srcUDPPort, rx_packet + UDP_SRC_IDX, sizeof(outStateBuf->srcUDPPort));
 		memcpy(outStateBuf->srcMAC, rx_packet + ETH_SRC_IDX, sizeof(outStateBuf->srcMAC));
-		_mem4cpy(sampleBuf, v49_data.payload.buff, v49_data.payload.len >> 2);
+		//_mem4cpy(sampleBuf, v49_data.payload.buff, v49_data.payload.len >> 2);
 	}
 	// Debug
 	else

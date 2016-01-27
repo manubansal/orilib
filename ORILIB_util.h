@@ -10,6 +10,8 @@ Author(s): Manu Bansal
 
 #include <osl/inc/swpform.h>
 
+void printMacAddr(void * addr);
+
 void ORILIB_gpio_output_control(
 	Uint8 bank,
 	Uint8 pin,

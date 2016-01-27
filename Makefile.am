@@ -19,6 +19,7 @@ lib_orilib_a_SOURCES = \
   ORILIB_ByteReader_i.c \
   ORILIB_ByteReader_Init_i.c \
   ORILIB_EthInterfaceInit_i.c \
+  ORILIB_EthInterfaceAddMACAddr_i.c \
   ORILIB_EthInterfaceInit_osal_platform.c \
   ORILIB_EthReaderTimedBlocking_i.c \
   ORILIB_EthReaderBuffered_i.c \
