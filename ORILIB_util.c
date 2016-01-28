@@ -9,6 +9,11 @@ Author(s): Manu Bansal
 #include <ti/csl/csl_gpioAux.h>
 #include <ti/platform/platform.h>
 
+void printIPAddr(void * addr) {
+  unsigned char * p = (unsigned char *)addr;
+  printf("%u.%u.%u.%u", *p, *(p+1), *(p+2), *(p+3));
+}
+
 void printMacAddr(void * addr) {
   int i = 0;
   unsigned char * p = (unsigned char *)addr;
