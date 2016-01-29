@@ -9,4 +9,6 @@ configure
 depcomp
 install-sh
 missing
-
+dsplib_twiddles/
+iqmath/
+tags
